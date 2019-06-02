@@ -22,7 +22,7 @@ def process(context,event):
         updated_item = {'line_number': {"N":str(line['line_number'])},'sent':{"N":str(int(line['sent'])+1)},"line":{"S":line['line']}}
         DB_CLIENT.put_item(TableName=TABLE_NAME,Item=updated_item)
 def get_lines():
-    filtering_exp = Key(FILTER_KEY).lte(MAX_SENT)
+    filtering_exp = Key(FILTER_KEY).lte(MAX_SENT) #TODO: USE lt instead. Change environment variable also
     response = TABLE.scan(TableName=TABLE_NAME,FilterExpression=filtering_exp)
     result = response['Items']
     #print(result)
