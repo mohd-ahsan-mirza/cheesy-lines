@@ -11,7 +11,7 @@ MAX_SENT = int(os.environ['max_sent'])
 TABLE_NAME = os.environ['db_table']
 TABLE = DB_RESOURCE.Table(TABLE_NAME)
 FILTER_KEY = os.environ['filter_key']
-def process():
+def process(context,event):
     lines = get_lines()
     if len(lines) == 0:
         send_email("Add more cheesy lines","All out of cheesy lines!! Add more please to impress your SO",SOURCE_EMAIL,SOURCE_EMAIL)
