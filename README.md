@@ -6,6 +6,9 @@ I built this application to email my girlfriend a new cheesy line everyday using
 * AWS-CLI
 * boto3
 
-#Local Setup
+# Setup
+## Local
+
+
 
  
