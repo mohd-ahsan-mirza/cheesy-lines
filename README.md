@@ -30,6 +30,7 @@ Create a new rule using the function name above and a schedule of your choice.
 
 ### AWS-CLI
 Make sure you have added your keys for aws cli using ```aws-configure```
+
 ```pip3 install boto3```
 
 ### Seeding Data
