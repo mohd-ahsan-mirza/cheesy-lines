@@ -20,6 +20,7 @@ Configure all the environment variables present in the ```test_lambda_function_l
 IAM policies you will need to attach
 * AmazonDynamoDBFullAccess
 * AmazonSESFullAccess
+
 Name the function ```email_cheesy_line```
 
 ### CloudWatch
