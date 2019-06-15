@@ -1,0 +1,37 @@
+
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Resources" : {
+    "cheesyLines" : {
+      "Type" : "AWS::DynamoDB::Table",
+      "Properties" : {
+        "AttributeDefinitions" : [
+          {
+            "AttributeName" : "dateadded",
+            "AttributeType" : "N"   
+          },
+          {
+            "AttributeName" : "line_number",
+            "AttributeType" : "N"
+          }
+        ],
+        "KeySchema" : [
+          {
+            "AttributeName" : "dateadded",
+            "KeyType" : "HASH"
+          },
+          {
+            "AttributeName" : "line_number",
+            "KeyType" : "RANGE"
+          }
+        ],
+        "ProvisionedThroughput" : {
+          "ReadCapacityUnits" : "5",
+          "WriteCapacityUnits" : "5"
+        },
+        "TableName" : "cheesy_lines"
+      }
+    }
+  }
+}
+         

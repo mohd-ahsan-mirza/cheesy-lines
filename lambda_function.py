@@ -11,6 +11,7 @@ MAX_SENT = int(os.environ['max_sent'])
 TABLE_NAME = os.environ['db_table']
 TABLE = DB_RESOURCE.Table(TABLE_NAME)
 FILTER_KEY = os.environ['filter_key']
+FILTER_KEY_VALUE = os.environ['filter_key_value']
 def process(context,event):
     lines = get_lines()
     if len(lines) == 0:
@@ -19,12 +20,13 @@ def process(context,event):
         line = lines[0]
         print(line)
         send_email("Cheesy Line "+str(line['line_number']),line['line'],SOURCE_EMAIL,DESTINATION_EMAIL)
-        updated_item = {'line_number': {"N":str(line['line_number'])},'sent':{"N":str(int(line['sent'])+1)},"line":{"S":line['line']}}
+        updated_item = {'dateadded': {"N":str(line['dateadded'])},'line_number': {"N":str(line['line_number'])},'sent':{"N":str(int(line['sent'])+1)},"line":{"S":line['line']}}
         DB_CLIENT.put_item(TableName=TABLE_NAME,Item=updated_item)
 def get_lines():
-    filtering_exp = Key(FILTER_KEY).lte(MAX_SENT) #TODO: USE lt instead. Change environment variable also
-    response = TABLE.scan(TableName=TABLE_NAME,FilterExpression=filtering_exp)
+    key = Key(FILTER_KEY).eq(int(FILTER_KEY_VALUE)) 
+    response = TABLE.query(KeyConditionExpression=key)
     result = response['Items']
+    result = [item for item in result if item['sent'] < MAX_SENT]
     #print(result)
     return result
 def send_email(subject,message,source_email,destination_email):
