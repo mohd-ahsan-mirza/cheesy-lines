@@ -17,6 +17,7 @@ Create a new cloudformation stack using template ```db-creation-cloudformation.j
 ### Lambda
 Create a new Lambda function using the code in ```lambda_function.py```
 Configure all the environment variables present in the ```test_lambda_function_locally.py```
+
 IAM policies you will need to attach
 * AmazonDynamoDBFullAccess
 * AmazonSESFullAccess
