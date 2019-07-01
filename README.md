@@ -33,7 +33,7 @@ Create a new rule using the function name above and a schedule of your choice.
 ### AWS-CLI
 Make sure you have added your keys for aws cli using ```aws-configure```
 
-```pip3 install boto3```
+Install boto3 if you haven't previously ```pip3 install boto3```
 
 ### Seeding Data
 Uncomment all seeded data if commented out in ```seed_data.py``` and run the file using ```python3```
